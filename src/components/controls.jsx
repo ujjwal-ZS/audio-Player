@@ -13,10 +13,11 @@ const Controls = ({
   onShuffleClick,
 }) => {
   return (
-    <div className="flex flex-row mt-4">
+    <div className="flex flex-row mt-4 gap-4">
       <ImageButton src="/assets/icons/ic_prev.svg" onClick={onPrevClick} />
       <div className="flex items-center" onClick={skipBackward}>
-        <ImageButton src="/assets/icons/ic_backward.svg" /> <p>30</p>
+        <ImageButton src="/assets/icons/ic_backward.svg" buttonSize={"20"} />{" "}
+        <p className="text-xs mb-1">30</p>
       </div>
       <ImageButton
         className="mr-2 ml-2"
@@ -26,8 +27,8 @@ const Controls = ({
         onClick={onPlayClick}
       />
       <div className="flex items-center" onClick={skipForward}>
-        <p>30</p>
-        <ImageButton src="/assets/icons/ic_forward.svg" />
+        <p className="text-xs mb-1">30</p>
+        <ImageButton src="/assets/icons/ic_forward.svg" buttonSize={"20"} />
       </div>
       <ImageButton src="/assets/icons/ic_next.svg" onClick={onNextClick} />
     </div>
@@ -36,10 +37,15 @@ const Controls = ({
 
 export default Controls;
 
-const ImageButton = ({ onClick, src, disabledSrc, disabled }) => {
-  const buttonSize = 65;
+const ImageButton = ({
+  onClick,
+  src,
+  disabledSrc,
+  disabled,
+  buttonSize = 40,
+}) => {
   return (
-    <button onClick={onClick} disabled={disabled}>
+    <button className="h-fit" onClick={onClick} disabled={disabled}>
       <Image
         src={disabled ? disabledSrc : src}
         alt="Icon"
