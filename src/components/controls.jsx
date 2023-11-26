@@ -19,6 +19,9 @@ const Controls = ({
         disabled={!shuffle}
       />
       <ImageButton src="/assets/icons/ic_prev.svg" onClick={onPrevClick} />
+      <div className="flex items-center">
+        <ImageButton src="/assets/icons/ic_backward.svg" /> <p>30</p>
+      </div>
       <ImageButton
         className="mr-2 ml-2"
         src={
@@ -26,6 +29,10 @@ const Controls = ({
         }
         onClick={onPlayClick}
       />
+      <div className="flex items-center">
+        <p>30</p>
+        <ImageButton src="/assets/icons/ic_forward.svg" />
+      </div>
       <ImageButton src="/assets/icons/ic_next.svg" onClick={onNextClick} />
       <ImageButton
         src={
