@@ -38,23 +38,23 @@ export function createAudioplayer(playlist, onStateChange) {
   }
 
   function getPlaybackState() {
-    return audioElement.paused ? 'PAUSED' : 'PLAYING';
+    return audioElement.paused ? "PAUSED" : "PLAYING";
   }
 
   function setupAudioElementListeners() {
-    audioElement.addEventListener('playing', emitCurrentPlayerState);
-    audioElement.addEventListener('pause', emitCurrentPlayerState);
-    audioElement.addEventListener('ended', onCurrentTrackEnded);
-    audioElement.addEventListener('timeupdate', emitCurrentPlayerState);
-    audioElement.addEventListener('loadeddata', emitCurrentPlayerState);
+    audioElement.addEventListener("playing", emitCurrentPlayerState);
+    audioElement.addEventListener("pause", emitCurrentPlayerState);
+    audioElement.addEventListener("ended", onCurrentTrackEnded);
+    audioElement.addEventListener("timeupdate", emitCurrentPlayerState);
+    audioElement.addEventListener("loadeddata", emitCurrentPlayerState);
   }
 
   function removeAudioElementListeners() {
-    audioElement.removeEventListener('playing', emitCurrentPlayerState);
-    audioElement.removeEventListener('pause', emitCurrentPlayerState);
-    audioElement.removeEventListener('ended', onCurrentTrackEnded);
-    audioElement.removeEventListener('timeupdate', emitCurrentPlayerState);
-    audioElement.removeEventListener('loadeddata', emitCurrentPlayerState);
+    audioElement.removeEventListener("playing", emitCurrentPlayerState);
+    audioElement.removeEventListener("pause", emitCurrentPlayerState);
+    audioElement.removeEventListener("ended", onCurrentTrackEnded);
+    audioElement.removeEventListener("timeupdate", emitCurrentPlayerState);
+    audioElement.removeEventListener("loadeddata", emitCurrentPlayerState);
   }
 
   function onCurrentTrackEnded() {
@@ -140,6 +140,26 @@ export function createAudioplayer(playlist, onStateChange) {
     }
   }
 
+  function skipForward() {
+    const newPosition = audioElement.currentTime + 30;
+    if (newPosition < audioElement.duration) {
+      audioElement.currentTime = newPosition;
+    } else {
+      audioElement.currentTime = audioElement.duration;
+    }
+    emitCurrentPlayerState();
+  }
+
+  function skipBackward() {
+    const newPosition = audioElement.currentTime - 30;
+    if (newPosition > 0) {
+      audioElement.currentTime = newPosition;
+    } else {
+      audioElement.currentTime = 0;
+    }
+    emitCurrentPlayerState();
+  }
+
   init();
   return {
     setPlaybackPosition,
@@ -147,6 +167,8 @@ export function createAudioplayer(playlist, onStateChange) {
     toggleRepeat,
     playNextTrack,
     playPreviousTrack,
+    skipForward,
+    skipBackward,
     togglePlayPause,
     cleanup,
   };

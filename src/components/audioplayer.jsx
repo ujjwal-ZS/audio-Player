@@ -1,8 +1,8 @@
-import playlist from '../playlist/playlist';
-import Controls from './controls';
-import ProgressBar from './progressbar';
-import SongInfo from './song-info';
-import useAudioPlayer from '../audioplayer/hooks';
+import playlist from "../playlist/playlist";
+import Controls from "./controls";
+import ProgressBar from "./progressbar";
+import SongInfo from "./song-info";
+import useAudioPlayer from "../audioplayer/hooks";
 
 const AudioPlayer = () => {
   const {
@@ -13,6 +13,8 @@ const AudioPlayer = () => {
     toggleRepeat,
     toggleShuffle,
     setPlaybackPosition,
+    skipBackward,
+    skipForward,
   } = useAudioPlayer(playlist);
 
   const {
@@ -63,7 +65,9 @@ const AudioPlayer = () => {
         onPrevClick={playPreviousTrack}
         onNextClick={playNextTrack}
         onPlayClick={togglePlayPause}
-        isPlaying={playbackState === 'PLAYING'}
+        skipBackward={skipBackward}
+        skipForward={skipForward}
+        isPlaying={playbackState === "PLAYING"}
       />
     </div>
   );
@@ -72,10 +76,10 @@ const AudioPlayer = () => {
 export default AudioPlayer;
 
 function formatTime(timeInSeconds) {
-  if (timeInSeconds === null) return '';
+  if (timeInSeconds === null) return "";
   const numberOfMinutes = Math.floor(timeInSeconds / 60);
   const numberOfSeconds = Math.floor(timeInSeconds - numberOfMinutes * 60);
-  const minutes = `${numberOfMinutes}`.padStart(2, '0');
-  const seconds = `${numberOfSeconds}`.padStart(2, '0');
+  const minutes = `${numberOfMinutes}`.padStart(2, "0");
+  const seconds = `${numberOfSeconds}`.padStart(2, "0");
   return `${minutes}:${seconds}`;
 }

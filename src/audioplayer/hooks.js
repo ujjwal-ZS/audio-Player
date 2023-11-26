@@ -1,7 +1,6 @@
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-import { useState, useRef, useEffect } from 'react';
-import { InitialPlayerState } from './types';
-import { createAudioplayer } from './audioplayer';
+import { useState, useRef, useEffect } from "react";
+import { InitialPlayerState } from "./types";
+import { createAudioplayer } from "./audioplayer";
 
 function useAudioPlayer(playlist) {
   const [playerState, setPlayerState] = useState(InitialPlayerState);
@@ -39,6 +38,14 @@ function useAudioPlayer(playlist) {
     playerRef.current && playerRef.current.playPreviousTrack();
   }
 
+  function skipForward() {
+    playerRef.current && playerRef.current.skipForward();
+  }
+
+  function skipBackward() {
+    playerRef.current && playerRef.current.skipBackward();
+  }
+
   function cleanup() {
     playerRef.current && playerRef.current.cleanup();
   }
@@ -51,6 +58,8 @@ function useAudioPlayer(playlist) {
     togglePlayPause,
     playNextTrack,
     playPreviousTrack,
+    skipForward,
+    skipBackward,
     cleanup,
   };
 }

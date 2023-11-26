@@ -5,6 +5,8 @@ const Controls = ({
   isPlaying,
   onPrevClick,
   onNextClick,
+  skipBackward,
+  skipForward,
   repeat,
   onRepeatClick,
   shuffle,
@@ -12,14 +14,8 @@ const Controls = ({
 }) => {
   return (
     <div className="flex flex-row mt-4">
-      <ImageButton
-        src="/assets/icons/ic_shuffle.svg"
-        disabledSrc="/assets/icons/ic_shuffle_disabled.svg"
-        onClick={onShuffleClick}
-        disabled={!shuffle}
-      />
       <ImageButton src="/assets/icons/ic_prev.svg" onClick={onPrevClick} />
-      <div className="flex items-center">
+      <div className="flex items-center" onClick={skipBackward}>
         <ImageButton src="/assets/icons/ic_backward.svg" /> <p>30</p>
       </div>
       <ImageButton
@@ -29,19 +25,11 @@ const Controls = ({
         }
         onClick={onPlayClick}
       />
-      <div className="flex items-center">
+      <div className="flex items-center" onClick={skipForward}>
         <p>30</p>
         <ImageButton src="/assets/icons/ic_forward.svg" />
       </div>
       <ImageButton src="/assets/icons/ic_next.svg" onClick={onNextClick} />
-      <ImageButton
-        src={
-          repeat
-            ? "/assets/icons/ic_repeat.svg"
-            : "/assets/icons/ic_repeat_disabled.svg"
-        }
-        onClick={onRepeatClick}
-      />
     </div>
   );
 };
