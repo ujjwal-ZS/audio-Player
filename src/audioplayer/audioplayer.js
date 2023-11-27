@@ -164,7 +164,7 @@ export function createAudioplayer(playlist, onStateChange) {
   return {
     setPlaybackPosition,
     toggleShuffle,
-    toggleRepeat,
+    toggleRepeat, 
     playNextTrack,
     playPreviousTrack,
     skipForward,
