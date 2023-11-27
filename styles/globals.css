@@ -17,3 +17,43 @@ a {
 * {
   box-sizing: border-box;
 }
+/* CSS for progress Bar */
+/* This CSS is supposed to be removed */
+.slider {
+  position: relative;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 2px;
+  background-color: rgb(223, 222, 222);
+  outline: none;
+}
+
+.slider::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: var(--progress, 0%);
+  background-color: #000;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 10px;
+  width: 10px;
+  background-color: #000;
+  border-radius: 100%;
+  border: #505050 1px solid;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  height: 19px;
+  width: 19px;
+  background-color: white;
+  border-radius: 100%;
+  border: #505050 1px solid;
+  cursor: pointer;
+}

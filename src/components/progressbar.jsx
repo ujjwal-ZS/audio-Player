@@ -1,4 +1,6 @@
-const ProgressBar = ({ progress, onChange, leftLabel, rightLabel }) => {
+import React from "react";
+
+const ProgressBar = ({ progress, onChange }) => {
   return (
     <div className="flex flex-col">
       <input
@@ -8,14 +10,11 @@ const ProgressBar = ({ progress, onChange, leftLabel, rightLabel }) => {
         value={progress}
         step="0.25"
         className="slider"
+        style={{ "--progress": `${progress - 0.5}%` }}
         onChange={(event) => {
           onChange(parseInt(event?.target.value));
         }}
       />
-      <div className="flex w-full flex-row justify-between mt-1 text-primary">
-        <span className="text-xs">{leftLabel}</span>
-        <span className="text-xs">{rightLabel}</span>
-      </div>
     </div>
   );
 };
