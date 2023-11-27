@@ -6,7 +6,7 @@ import AudioPlayer from "../src/components/audioplayer";
 export default function Home() {
   return (
     <div className="bg-red">
-      <div className="text-3xl underline bg-red-500">Hello world!</div>
+      <div className="text-3xl underline bg-red-500 mb-5">Hello world!</div>
       <AudioPlayer />
     </div>
   );
