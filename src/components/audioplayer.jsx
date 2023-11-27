@@ -45,30 +45,33 @@ const AudioPlayer = () => {
   }
 
   return (
-    <div className="flex flex-col items-center">
-      <SongInfo
-        title={currentTrackMetadata?.title}
-        artist={currentTrackMetadata?.artist}
-        coverArtSrc={currentTrackMetadata?.coverArtSrc}
-      />
-      <ProgressBar
-        rightLabel={formatTime(currentTrackDuration)}
-        leftLabel={formatTime(currentTrackPlaybackPosition)}
-        onChange={setProgress}
-        progress={computeProgress()}
-      />
-      <Controls
-        shuffle={shuffle}
-        repeat={repeat}
-        onShuffleClick={toggleShuffle}
-        onRepeatClick={toggleRepeat}
-        onPrevClick={playPreviousTrack}
-        onNextClick={playNextTrack}
-        onPlayClick={togglePlayPause}
-        skipBackward={skipBackward}
-        skipForward={skipForward}
-        isPlaying={playbackState === "PLAYING"}
-      />
+    <div className="grid sm:grid-cols-3 w-full">
+      <div className="flex justify-center sm:justify-start sm:items-start">
+        <SongInfo
+          title={currentTrackMetadata?.title}
+          artist={currentTrackMetadata?.artist}
+          coverArtSrc={currentTrackMetadata?.coverArtSrc}
+        />
+      </div>
+
+      <div className="flex justify-center sm:items-center">
+        <Controls
+          shuffle={shuffle}
+          repeat={repeat}
+          onShuffleClick={toggleShuffle}
+          onRepeatClick={toggleRepeat}
+          onPrevClick={playPreviousTrack}
+          onNextClick={playNextTrack}
+          onPlayClick={togglePlayPause}
+          skipBackward={skipBackward}
+          skipForward={skipForward}
+          isPlaying={playbackState === "PLAYING"}
+        />
+      </div>
+
+      <div className="flex items-center justify-center sm:justify-end">
+        <p className="text-gray-500 text-sm">Speed 1.5x</p>
+      </div>
     </div>
   );
 };

@@ -13,7 +13,7 @@ const Controls = ({
   onShuffleClick,
 }) => {
   return (
-    <div className="flex flex-row mt-4 gap-4">
+    <div className="flex flex-row gap-4">
       <ImageButton src="/assets/icons/ic_prev.svg" onClick={onPrevClick} />
       <div className="flex items-center" onClick={skipBackward}>
         <ImageButton src="/assets/icons/ic_backward.svg" buttonSize={"20"} />{" "}
