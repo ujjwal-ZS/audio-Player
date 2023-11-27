@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
-import useAudioPlayer from "../src/audioplayer/hooks";
+import React, { createContext, useState } from "react";
 
 export const AudioPlayerContext = createContext(null);
 
