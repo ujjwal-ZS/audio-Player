@@ -51,7 +51,7 @@ const ImageButton = ({
         alt="Icon"
         width={buttonSize}
         height={buttonSize}
-        className="drop-shadow-lg"
+        className=""
       />
     </button>
   );

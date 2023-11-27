@@ -45,7 +45,7 @@ const AudioPlayer = () => {
   }
 
   return (
-    <div className="grid sm:grid-cols-3 w-full">
+    <div className="grid sm:grid-cols-3 w-full bg-slate-100 p-2">
       <div className="flex justify-center sm:justify-start sm:items-start">
         <SongInfo
           title={currentTrackMetadata?.title}
