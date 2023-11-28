@@ -5,6 +5,7 @@ export const AudioPlayerContext = createContext(null);
 export const AudioPlayerProvider = ({ children }) => {
   const [playlist, setPlaylist] = useState([]);
   const [showPlayerInBottom, setShowPlayerInBottom] = useState(false);
+  const [playState, setContextPlayState] = useState({});
 
   return (
     <AudioPlayerContext.Provider
@@ -13,6 +14,8 @@ export const AudioPlayerProvider = ({ children }) => {
         setShowPlayerInBottom,
         playlist,
         setPlaylist,
+        playState,
+        setContextPlayState,
       }}
     >
       {children}

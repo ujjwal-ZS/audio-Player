@@ -1,12 +1,23 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import { createAudioplayer } from "./audioplayer";
+import { AudioPlayerContext } from "../../../provider/AudioPlayerProvider";
 
 function useAudioPlayer(playlist) {
   const [playerState, setPlayerState] = useState({});
   const playerRef = useRef(null);
+  const { setContextPlayState } = useContext(AudioPlayerContext);
+
+  const handlePlayerStateChange = (value) => {
+    setPlayerState(value);
+    setContextPlayState(value);
+  };
 
   useEffect(() => {
-    const newPlayer = createAudioplayer(playlist, setPlayerState);
+    const newPlayer = createAudioplayer(
+      playlist,
+      handlePlayerStateChange,
+      playerState
+    );
     playerRef.current = newPlayer;
     return () => {
       newPlayer.cleanup();

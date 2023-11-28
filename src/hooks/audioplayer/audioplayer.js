@@ -1,6 +1,6 @@
-export function createAudioplayer(playlist, onStateChange) {
-  let currentTrackIndex = 0;
-  let repeat = false;
+export function createAudioplayer(playlist, onStateChange, initialState) {
+  let currentTrackIndex = initialState?.currentTrackIndex || 0;
+  let repeat = initialState?.repeat || false;
   let shuffle = false;
   const playbackHistory = [];
   const audioElement = new Audio();
@@ -75,6 +75,7 @@ export function createAudioplayer(playlist, onStateChange) {
   }
 
   function loadTrack(index) {
+    debugger;
     audioElement.src = playlist[index].audioSrc;
     audioElement.load();
     currentTrackIndex = index;

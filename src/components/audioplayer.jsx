@@ -1,11 +1,12 @@
-import playlist from "../playlist/playlist";
 import Controls from "./controls";
 import ProgressBar from "./progressbar";
 import SongInfo from "./song-info";
 import useAudioPlayer from "../hooks/audioplayer/hooks";
 import Image from "next/image";
+import { useContext } from "react";
+import { AudioPlayerContext } from "../../provider/AudioPlayerProvider";
 
-const AudioPlayer = ({ playList = playlist, onClose }) => {
+const AudioPlayer = ({ playlist, onClose }) => {
   const {
     playNextTrack,
     playPreviousTrack,
@@ -17,7 +18,7 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
     skipBackward,
     skipForward,
     onChangeSpeed,
-  } = useAudioPlayer(playList);
+  } = useAudioPlayer(playlist);
 
   const {
     repeat,
@@ -28,6 +29,9 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
     currentTrackMetadata,
     currentSpeed,
   } = playerState;
+
+  const { setPlaylist } = useContext(AudioPlayerContext);
+  setPlaylist(playlist);
 
   function setProgress(value) {
     if (currentTrackDuration !== null) {
@@ -46,6 +50,11 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
       return (currentTrackPlaybackPosition / currentTrackDuration) * 100;
     }
   }
+
+  const handleOnClose = () => {
+    setPlaylist([]);
+    onClose();
+  };
 
   return (
     <div className="w-full">
@@ -84,10 +93,10 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
             className="text-gray-500 text-sm pr-2 cursor-pointer"
             onClick={onChangeSpeed}
           >
-            {`Speed ${currentSpeed}`}
+            {`Speed ${currentSpeed}x`}
           </div>
           <span className="h-9 border-r border-gray-300 mx-2" />
-          <div className="mr-2 cursor-pointer" onClick={onClose}>
+          <div className="mr-2 cursor-pointer" onClick={handleOnClose}>
             <Image
               alt="Cover Art"
               src="/assets/icons/ic_cross.svg"
