@@ -1,6 +1,6 @@
 export function createAudioplayer(playlist, onStateChange, initialState) {
-  let currentTrackIndex = initialState?.currentTrackIndex || 0;
-  let repeat = initialState?.repeat || false;
+  let currentTrackIndex = 0;
+  let repeat = false;
   let shuffle = false;
   const playbackHistory = [];
   const audioElement = new Audio();
@@ -21,6 +21,7 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
       playbackState: getPlaybackState(),
       repeat,
       shuffle,
+      currentTrackIndex,
       currentSpeed: speedOptions[currentSpeedIndex],
     };
   }
@@ -75,7 +76,6 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
   }
 
   function loadTrack(index) {
-    debugger;
     audioElement.src = playlist[index].audioSrc;
     audioElement.load();
     currentTrackIndex = index;
@@ -96,8 +96,41 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
   }
 
   function init() {
+    if (initialState?.currentTrackIndex) {
+      currentTrackIndex = initialState.currentTrackIndex;
+      loadTrack(currentTrackIndex);
+    } else {
+      loadTrack(currentTrackIndex);
+    }
+
+    if (initialState?.currentSpeed) {
+      currentSpeedIndex = speedOptions.indexOf(initialState.currentSpeed);
+      audioElement.playbackRate = speedOptions[currentSpeedIndex];
+    }
+    if (initialState.repeat !== undefined) {
+      repeat = initialState.repeat;
+    }
+    if (initialState.shuffle !== undefined) {
+      shuffle = initialState.shuffle;
+    }
+    if (initialState.currentTrackMetadata) {
+      playlist[currentTrackIndex].metadata = initialState.currentTrackMetadata;
+    }
+    if (initialState.currentTrackPlaybackPosition !== undefined) {
+      audioElement.currentTime = initialState.currentTrackPlaybackPosition;
+    }
+    if (initialState?.playbackState) {
+      initialState?.playbackState === "PLAYING"
+        ? audioElement.play()
+        : audioElement.pause;
+    }
+    if (initialState?.playbackState) {
+      initialState?.playbackState === "PLAYING"
+        ? audioElement.play()
+        : audioElement.pause;
+    }
     setupAudioElementListeners();
-    loadTrack(0);
+    emitCurrentPlayerState();
   }
 
   function cleanup() {

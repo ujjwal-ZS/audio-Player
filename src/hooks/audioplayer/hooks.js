@@ -1,15 +1,13 @@
 import { useState, useRef, useEffect, useContext } from "react";
 import { createAudioplayer } from "./audioplayer";
-import { AudioPlayerContext } from "../../../provider/AudioPlayerProvider";
 
-function useAudioPlayer(playlist) {
-  const [playerState, setPlayerState] = useState({});
+function useAudioPlayer(playlist, initialState = {}, onUpdatingPlayer) {
+  const [playerState, setPlayerState] = useState(initialState);
   const playerRef = useRef(null);
-  const { setContextPlayState } = useContext(AudioPlayerContext);
 
   const handlePlayerStateChange = (value) => {
     setPlayerState(value);
-    setContextPlayState(value);
+    onUpdatingPlayer(value);
   };
 
   useEffect(() => {

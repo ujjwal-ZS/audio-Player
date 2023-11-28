@@ -6,7 +6,8 @@ import Image from "next/image";
 import { useContext } from "react";
 import { AudioPlayerContext } from "../../provider/AudioPlayerProvider";
 
-const AudioPlayer = ({ playlist, onClose }) => {
+const AudioPlayer = ({ playlist, onClose, initialState }) => {
+  const { setPlaylist, setContextPlayState } = useContext(AudioPlayerContext);
   const {
     playNextTrack,
     playPreviousTrack,
@@ -18,7 +19,7 @@ const AudioPlayer = ({ playlist, onClose }) => {
     skipBackward,
     skipForward,
     onChangeSpeed,
-  } = useAudioPlayer(playlist);
+  } = useAudioPlayer(playlist, initialState, setContextPlayState);
 
   const {
     repeat,
@@ -30,7 +31,6 @@ const AudioPlayer = ({ playlist, onClose }) => {
     currentSpeed,
   } = playerState;
 
-  const { setPlaylist } = useContext(AudioPlayerContext);
   setPlaylist(playlist);
 
   function setProgress(value) {
