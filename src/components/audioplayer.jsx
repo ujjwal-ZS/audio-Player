@@ -2,7 +2,7 @@ import playlist from "../playlist/playlist";
 import Controls from "./controls";
 import ProgressBar from "./progressbar";
 import SongInfo from "./song-info";
-import useAudioPlayer from "../audioplayer/hooks";
+import useAudioPlayer from "../hooks/audioplayer/hooks";
 import Image from "next/image";
 
 const AudioPlayer = ({ playList = playlist, onClose }) => {

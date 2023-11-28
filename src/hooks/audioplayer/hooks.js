@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-// import { InitialPlayerState } from "./types";
 import { createAudioplayer } from "./audioplayer";
 
 function useAudioPlayer(playlist) {
