@@ -5,6 +5,9 @@ export function createAudioplayer(playlist, onStateChange) {
   const playbackHistory = [];
   const audioElement = new Audio();
 
+  const speedOptions = [1, 1.5, 1.75, 2];
+  let currentSpeedIndex = 0;
+
   function emitCurrentPlayerState() {
     const state = computeCurrentPlayerState();
     onStateChange(state);
@@ -18,6 +21,7 @@ export function createAudioplayer(playlist, onStateChange) {
       playbackState: getPlaybackState(),
       repeat,
       shuffle,
+      currentSpeed: speedOptions[currentSpeedIndex],
     };
   }
 
@@ -160,16 +164,24 @@ export function createAudioplayer(playlist, onStateChange) {
     emitCurrentPlayerState();
   }
 
+  function handleSpeedChange() {
+    currentSpeedIndex = (currentSpeedIndex + 1) % speedOptions.length;
+    const selectedSpeed = speedOptions[currentSpeedIndex];
+    audioElement.playbackRate = selectedSpeed;
+    emitCurrentPlayerState();
+  }
+
   init();
   return {
     setPlaybackPosition,
     toggleShuffle,
-    toggleRepeat, 
+    toggleRepeat,
     playNextTrack,
     playPreviousTrack,
     skipForward,
     skipBackward,
     togglePlayPause,
+    handleSpeedChange,
     cleanup,
   };
 }

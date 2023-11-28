@@ -1,9 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import { InitialPlayerState } from "./types";
+// import { InitialPlayerState } from "./types";
 import { createAudioplayer } from "./audioplayer";
 
 function useAudioPlayer(playlist) {
-  const [playerState, setPlayerState] = useState(InitialPlayerState);
+  const [playerState, setPlayerState] = useState({});
   const playerRef = useRef(null);
 
   useEffect(() => {
@@ -46,6 +46,10 @@ function useAudioPlayer(playlist) {
     playerRef.current && playerRef.current.skipBackward();
   }
 
+  function onChangeSpeed() {
+    playerRef.current && playerRef.current.handleSpeedChange();
+  }
+
   function cleanup() {
     playerRef.current && playerRef.current.cleanup();
   }
@@ -60,6 +64,7 @@ function useAudioPlayer(playlist) {
     playPreviousTrack,
     skipForward,
     skipBackward,
+    onChangeSpeed,
     cleanup,
   };
 }

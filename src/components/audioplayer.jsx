@@ -16,6 +16,7 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
     setPlaybackPosition,
     skipBackward,
     skipForward,
+    onChangeSpeed,
   } = useAudioPlayer(playList);
 
   const {
@@ -25,6 +26,7 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
     currentTrackDuration,
     currentTrackPlaybackPosition,
     currentTrackMetadata,
+    currentSpeed,
   } = playerState;
 
   function setProgress(value) {
@@ -78,7 +80,12 @@ const AudioPlayer = ({ playList = playlist, onClose }) => {
         </div>
 
         <div className="flex gap-3 items-center justify-center sm:justify-end">
-          <p className="text-gray-500 text-sm pr-2">Speed 1.5x</p>
+          <div
+            className="text-gray-500 text-sm pr-2 cursor-pointer"
+            onClick={onChangeSpeed}
+          >
+            {`Speed ${currentSpeed}`}
+          </div>
           <span className="h-9 border-r border-gray-300 mx-2" />
           <div className="mr-2 cursor-pointer" onClick={onClose}>
             <Image
