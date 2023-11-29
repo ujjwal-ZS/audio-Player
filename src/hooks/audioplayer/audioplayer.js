@@ -2,7 +2,7 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
   let currentTrackIndex = 0;
   let repeat = false;
   let shuffle = false;
-  const playbackHistory = [];
+  let playbackHistory = [];
   const audioElement = new Audio();
 
   const speedOptions = [1, 1.5, 1.75, 2];
@@ -22,6 +22,7 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
       repeat,
       shuffle,
       currentTrackIndex,
+      playbackHistory,
       currentSpeed: speedOptions[currentSpeedIndex],
     };
   }
@@ -112,6 +113,9 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
     }
     if (initialState.shuffle !== undefined) {
       shuffle = initialState.shuffle;
+    }
+    if (initialState?.playbackHistory) {
+      playbackHistory = initialState.playbackHistory;
     }
     if (initialState.currentTrackMetadata) {
       playlist[currentTrackIndex].metadata = initialState.currentTrackMetadata;

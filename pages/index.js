@@ -40,7 +40,7 @@ const Modal = ({ children, closeModal }) => {
       <div className="bg-white p-8 rounded-lg shadow-lg relative">
         <button
           onClick={closeModal}
-          className="absolute top-0 right-0 m-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none"
+          className="m-4 p-2 rounded-full bg-gray-200 hover:bg-gray-300 focus:outline-none mb-5"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
