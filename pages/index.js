@@ -1,4 +1,4 @@
-import AudioPlayer from "../src/components/audioplayer";
+import AudioPlayer from "../src/components/AudioPlayer/audioplayer";
 import playlist from "../src/playlist/playlist";
 import { useContext, useRef, useState } from "react";
 import { AudioPlayerContext } from "../provider/AudioPlayerProvider";

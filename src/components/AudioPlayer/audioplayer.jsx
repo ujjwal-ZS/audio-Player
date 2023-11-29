@@ -1,10 +1,10 @@
 import Controls from "./controls";
 import ProgressBar from "./progressbar";
 import SongInfo from "./song-info";
-import useAudioPlayer from "../hooks/audioplayer/hooks";
+import useAudioPlayer from "../../hooks/audioplayer/hooks";
 import Image from "next/image";
 import { useContext } from "react";
-import { AudioPlayerContext } from "../../provider/AudioPlayerProvider";
+import { AudioPlayerContext } from "../../../provider/AudioPlayerProvider";
 
 const AudioPlayer = ({ playlist, onClose, initialState }) => {
   const { setPlaylist, setContextPlayState } = useContext(AudioPlayerContext);

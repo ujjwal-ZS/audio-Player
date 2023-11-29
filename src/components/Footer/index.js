@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AudioPlayerContext } from "../../../provider/AudioPlayerProvider";
-import AudioPlayer from "../audioplayer";
+import AudioPlayer from "../AudioPlayer/audioplayer";
 export default function Footer() {
   const { showPlayerInBottom, setShowPlayerInBottom, playState, playlist } =
     useContext(AudioPlayerContext);
