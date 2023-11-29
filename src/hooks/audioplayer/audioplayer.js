@@ -79,6 +79,7 @@ export function createAudioplayer(playlist, onStateChange, initialState) {
   function loadTrack(index) {
     audioElement.src = playlist[index].audioSrc;
     audioElement.load();
+    audioElement.playbackRate = speedOptions[currentSpeedIndex];
     currentTrackIndex = index;
   }
 
